@@ -1,0 +1,179 @@
+// =====================================================
+// THEME SYSTEM (SCALABLE)
+// =====================================================
+
+// ==========================
+// BASE COLORS (SCSS TOKENS)
+// ==========================
+
+$primary-400: #a78bfa;
+$primary-500: #8b5cf6;
+$primary-600: #7c3aed;
+
+$secondary-400: #fb923c;
+$secondary-500: #f97316;
+$secondary-600: #ea580c;
+
+// =====================================================
+// THEME TOKENS (CSS VARIABLES)
+// =====================================================
+
+:root {
+  // ======================
+  // DARK PALETTE
+  // ======================
+  --dark-bg-main: #0b0b0f;
+  --dark-bg-elevated: #14141a;
+  --dark-bg-subtle: #050507;
+
+  --dark-surface-1: rgba(255, 255, 255, 0.02);
+  --dark-surface-2: rgba(255, 255, 255, 0.04);
+  --dark-surface-3: rgba(255, 255, 255, 0.06);
+
+  --dark-border-subtle: rgba(255, 255, 255, 0.05);
+  --dark-border-default: rgba(255, 255, 255, 0.1);
+  --dark-border-strong: rgba(255, 255, 255, 0.16);
+
+  --dark-text-primary: #f5f5f7;
+  --dark-text-secondary: #c4c4cc;
+  --dark-text-muted: #8b8b93;
+  --dark-text-disabled: #52525b;
+
+  --dark-glow-primary: rgba(139, 92, 246, 0.25);
+  --dark-glow-secondary: rgba(249, 115, 22, 0.25);
+
+  // ======================
+  // LIGHT PALETTE
+  // ======================
+  --light-bg-main: #fafafa;
+  --light-bg-elevated: #f1f1f5;
+  --light-bg-subtle: #ffffff;
+
+  --light-surface-1: rgba(0, 0, 0, 0.02);
+  --light-surface-2: rgba(0, 0, 0, 0.04);
+  --light-surface-3: rgba(0, 0, 0, 0.06);
+
+  --light-border-subtle: rgba(0, 0, 0, 0.05);
+  --light-border-default: rgba(0, 0, 0, 0.1);
+  --light-border-strong: rgba(0, 0, 0, 0.16);
+
+  --light-text-primary: #18181b;
+  --light-text-secondary: #3f3f46;
+  --light-text-muted: #71717a;
+  --light-text-disabled: #a1a1aa;
+
+  --light-glow-primary: rgba(139, 92, 246, 0.18);
+  --light-glow-secondary: rgba(249, 115, 22, 0.18);
+
+  // ======================
+  // DEFAULT = DARK
+  // ======================
+  --bg-main: var(--dark-bg-main);
+  --bg-elevated: var(--dark-bg-elevated);
+  --bg-subtle: var(--dark-bg-subtle);
+
+  --surface-1: var(--dark-surface-1);
+  --surface-2: var(--dark-surface-2);
+  --surface-3: var(--dark-surface-3);
+
+  --border-subtle: var(--dark-border-subtle);
+  --border-default: var(--dark-border-default);
+  --border-strong: var(--dark-border-strong);
+
+  --text-primary: var(--dark-text-primary);
+  --text-secondary: var(--dark-text-secondary);
+  --text-muted: var(--dark-text-muted);
+  --text-disabled: var(--dark-text-disabled);
+
+  --glow-primary: var(--dark-glow-primary);
+  --glow-secondary: var(--dark-glow-secondary);
+
+  // couleurs fixes (pas dépendantes du thème)
+  --color-primary: #{$primary-500};
+  --color-primary-hover: #{$primary-400};
+  --color-primary-active: #{$primary-600};
+
+  --color-secondary: #{$secondary-500};
+  --color-secondary-hover: #{$secondary-400};
+  --color-secondary-active: #{$secondary-600};
+
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+}
+
+// =====================================================
+// OS PREFERENCE (AUTO)
+// =====================================================
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-main: var(--light-bg-main);
+    --bg-elevated: var(--light-bg-elevated);
+    --bg-subtle: var(--light-bg-subtle);
+
+    --surface-1: var(--light-surface-1);
+    --surface-2: var(--light-surface-2);
+    --surface-3: var(--light-surface-3);
+
+    --border-subtle: var(--light-border-subtle);
+    --border-default: var(--light-border-default);
+    --border-strong: var(--light-border-strong);
+
+    --text-primary: var(--light-text-primary);
+    --text-secondary: var(--light-text-secondary);
+    --text-muted: var(--light-text-muted);
+    --text-disabled: var(--light-text-disabled);
+
+    --glow-primary: var(--light-glow-primary);
+    --glow-secondary: var(--light-glow-secondary);
+  }
+}
+
+// =====================================================
+// MANUAL OVERRIDE
+// =====================================================
+
+[data-theme='dark'] {
+  --bg-main: var(--dark-bg-main);
+  --bg-elevated: var(--dark-bg-elevated);
+  --bg-subtle: var(--dark-bg-subtle);
+
+  --surface-1: var(--dark-surface-1);
+  --surface-2: var(--dark-surface-2);
+  --surface-3: var(--dark-surface-3);
+
+  --border-subtle: var(--dark-border-subtle);
+  --border-default: var(--dark-border-default);
+  --border-strong: var(--dark-border-strong);
+
+  --text-primary: var(--dark-text-primary);
+  --text-secondary: var(--dark-text-secondary);
+  --text-muted: var(--dark-text-muted);
+  --text-disabled: var(--dark-text-disabled);
+
+  --glow-primary: var(--dark-glow-primary);
+  --glow-secondary: var(--dark-glow-secondary);
+}
+
+[data-theme='light'] {
+  --bg-main: var(--light-bg-main);
+  --bg-elevated: var(--light-bg-elevated);
+  --bg-subtle: var(--light-bg-subtle);
+
+  --surface-1: var(--light-surface-1);
+  --surface-2: var(--light-surface-2);
+  --surface-3: var(--light-surface-3);
+
+  --border-subtle: var(--light-border-subtle);
+  --border-default: var(--light-border-default);
+  --border-strong: var(--light-border-strong);
+
+  --text-primary: var(--light-text-primary);
+  --text-secondary: var(--light-text-secondary);
+  --text-muted: var(--light-text-muted);
+  --text-disabled: var(--light-text-disabled);
+
+  --glow-primary: var(--light-glow-primary);
+  --glow-secondary: var(--light-glow-secondary);
+}

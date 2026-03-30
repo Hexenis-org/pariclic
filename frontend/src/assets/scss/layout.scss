@@ -1,0 +1,78 @@
+// =====================================================
+// SPACING SYSTEM (8pt grid)
+// =====================================================
+$space-xxs: 4px;
+$space-xs: 8px;
+$space-sm: 12px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+$space-2xl: 48px;
+$space-3xl: 64px;
+
+// =====================================================
+// BORDER RADIUS (soft & modern)
+// =====================================================
+$radius-xs: 4px;
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 20px;
+$radius-xl: 32px;
+$radius-full: 9999px;
+
+// =====================================================
+// CONTAINERS
+// =====================================================
+$container-sm: 640px;
+$container-md: 960px;
+$container-lg: 1200px;
+$container-xl: 1440px;
+
+// =====================================================
+// SHADOWS (subtil → premium)
+// =====================================================
+$shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+$shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 6px 16px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.1);
+
+// =====================================================
+// Z-INDEX SCALE
+// =====================================================
+$z-base: 1;
+$z-dropdown: 10;
+$z-sticky: 100;
+$z-overlay: 1000;
+$z-modal: 2000;
+
+// =====================================================
+// TRANSITIONS
+// =====================================================
+$transition-fast: 0.15s ease;
+$transition-normal: 0.25s ease;
+$transition-slow: 0.4s ease;
+
+// =====================================================
+// UTILITY CLASSES (optionnel mais pratique)
+// =====================================================
+.container {
+  max-width: $container-lg;
+  margin: 0 auto;
+  padding: 0 $space-md;
+}
+
+.section {
+  padding: $space-3xl 0;
+}
+
+.card {
+  background: var(--bg-elevated);
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  border: 1px solid var(--border-subtle);
+  transition: $transition-normal;
+
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
