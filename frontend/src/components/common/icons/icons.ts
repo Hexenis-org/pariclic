@@ -275,5 +275,37 @@ export const icons: Record<
     fill: createIcon([
       h('path', { d: 'M6 6l12 12M18 6L6 18', stroke: 'currentColor', 'stroke-width': '2' })
     ])
+  },
+
+  arrowUp: {
+    outline: createIcon([
+      h('path', {
+        d: 'M6 15l6-6 6 6',
+        stroke: 'currentColor',
+        'stroke-width': '1.5'
+      })
+    ]),
+    fill: createIcon([
+      h('path', {
+        d: 'M6 15l6-6 6 6H6z',
+        fill: 'currentColor'
+      })
+    ])
+  },
+
+  arrowDown: {
+    outline: createIcon([
+      h('path', {
+        d: 'M6 9l6 6 6-6',
+        stroke: 'currentColor',
+        'stroke-width': '1.5'
+      })
+    ]),
+    fill: createIcon([
+      h('path', {
+        d: 'M6 9l6 6 6-6H6z',
+        fill: 'currentColor'
+      })
+    ])
   }
 }
