@@ -91,11 +91,6 @@ onUnmounted(() => stopAuto())
   align-items: center;
   min-height: 46rem;
   padding: 7rem 0 5rem;
-
-  background:
-    radial-gradient(circle at 20% 10%, var(--glow-primary), transparent 35%),
-    radial-gradient(circle at 80% 80%, var(--glow-secondary), transparent 30%),
-    linear-gradient(180deg, var(--bg-main), var(--bg-elevated));
 }
 
 .hero-content {

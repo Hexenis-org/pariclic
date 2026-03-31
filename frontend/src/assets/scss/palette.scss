@@ -88,6 +88,9 @@ $secondary-600: #ea580c;
   --glow-primary: var(--dark-glow-primary);
   --glow-secondary: var(--dark-glow-secondary);
 
+  --bg-glow-primary: rgba(139, 92, 246, 0.25);
+  --bg-glow-secondary: rgba(249, 115, 22, 0.2);
+
   // couleurs fixes (pas dépendantes du thème)
   --color-primary: #{$primary-500};
   --color-primary-hover: #{$primary-400};
@@ -127,6 +130,9 @@ $secondary-600: #ea580c;
 
     --glow-primary: var(--light-glow-primary);
     --glow-secondary: var(--light-glow-secondary);
+
+    --bg-glow-primary: rgba(139, 92, 246, 0.35);
+    --bg-glow-secondary: rgba(249, 115, 22, 0.25);
   }
 }
 
@@ -154,6 +160,9 @@ $secondary-600: #ea580c;
 
   --glow-primary: var(--dark-glow-primary);
   --glow-secondary: var(--dark-glow-secondary);
+
+  --bg-glow-primary: rgba(139, 92, 246, 0.25);
+  --bg-glow-secondary: rgba(249, 115, 22, 0.2);
 }
 
 [data-theme='light'] {
@@ -176,4 +185,7 @@ $secondary-600: #ea580c;
 
   --glow-primary: var(--light-glow-primary);
   --glow-secondary: var(--light-glow-secondary);
+
+  --bg-glow-primary: rgba(139, 92, 246, 0.35);
+  --bg-glow-secondary: rgba(249, 115, 22, 0.25);
 }

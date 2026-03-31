@@ -2,7 +2,7 @@
   <div class="slide">
     <div class="content">
       <div class="text">
-        <span class="eyebrow">Photographie</span>
+        <span class="eyebrow">{{ category.tagline }}</span>
         <h1>{{ category.title }}</h1>
         <p v-if="category.description">
           {{ category.description }}
@@ -25,6 +25,7 @@
 <script setup lang="ts">
 defineProps<{
   category: {
+    tagline: string
     title: string
     description?: string
     images: { src: string; alt: string }[]

@@ -1,0 +1,155 @@
+/* =========================================
+   BASE
+========================================= */
+
+body {
+  position: relative;
+  overflow-x: hidden;
+
+  background: linear-gradient(180deg, var(--bg-main), var(--bg-elevated));
+}
+
+/* =========================================
+   LIGHT BEAM (effet studio)
+========================================= */
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: -20%;
+
+  background: linear-gradient(120deg, transparent 30%, var(--bg-glow-primary) 45%, transparent 60%);
+
+  opacity: 0.25;
+  filter: blur(80px);
+
+  transform: rotate(8deg);
+
+  animation: lightSweep 6s ease-in-out infinite alternate;
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* =========================================
+   COLOR BLOBS (profondeur)
+========================================= */
+
+.background-blobs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.background-blobs::before,
+.background-blobs::after {
+  content: '';
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+  filter: blur(100px);
+}
+
+/* blob 1 */
+.background-blobs::before {
+  top: 10%;
+  left: 20%;
+
+  background: var(--bg-glow-primary);
+  opacity: 0.35;
+
+  animation: floatBlob1 10s ease-in-out infinite alternate;
+}
+
+/* blob 2 */
+.background-blobs::after {
+  bottom: 10%;
+  right: 15%;
+
+  background: var(--bg-glow-secondary);
+  opacity: 0.3;
+
+  animation: floatBlob2 12s ease-in-out infinite alternate;
+}
+
+/* =========================================
+   SOFT VEIL (matière)
+========================================= */
+
+.background-veil {
+  position: fixed;
+  inset: 0;
+
+  background: radial-gradient(circle at 50% 50%, transparent 40%, rgba(0, 0, 0, 0.15) 100%);
+
+  backdrop-filter: blur(2px);
+
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* =========================================
+   GRAIN (photo feel)
+========================================= */
+
+.background-noise {
+  position: fixed;
+  inset: 0;
+
+  background-image: url('/noise.png');
+  opacity: 0.035;
+
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes lightSweep {
+  0% {
+    transform: translateX(-10%) rotate(8deg);
+  }
+  100% {
+    transform: translateX(10%) rotate(8deg);
+  }
+}
+
+@keyframes floatBlob1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(80px, 40px) scale(1.2);
+  }
+}
+
+@keyframes floatBlob2 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(-60px, -70px) scale(1.1);
+  }
+}
+
+/* =========================================
+   LIGHT MODE ADAPTATION
+========================================= */
+
+[data-theme='light'] body::before {
+  opacity: 0.35;
+}
+
+[data-theme='light'] .background-blobs::before,
+[data-theme='light'] .background-blobs::after {
+  opacity: 0.25;
+}
+bz [data-theme='light'] .background-veil {
+  background: radial-gradient(circle at 50% 50%, transparent 50%, rgba(255, 255, 255, 0.4) 100%);
+}

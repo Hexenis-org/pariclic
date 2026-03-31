@@ -5,6 +5,7 @@ export type HeroImage = {
 
 export type HeroCategory = {
   id: string
+  tagline: string
   title: string
   description: string
   images: HeroImage[]
@@ -13,6 +14,7 @@ export type HeroCategory = {
 export const heroData: HeroCategory[] = [
   {
     id: 'wedding',
+    tagline: 'Moments uniques',
     title: 'Mariages',
     description:
       'Des regards échangés aux éclats de rire, chaque instant compte. Je capture l’émotion brute, les détails invisibles et la magie de votre journée pour en faire des souvenirs intemporels.',
@@ -26,6 +28,7 @@ export const heroData: HeroCategory[] = [
 
   {
     id: 'studio',
+    tagline: 'Portrait & identité',
     title: 'Photos Studio',
     description:
       'Dans un environnement maîtrisé, chaque lumière sculpte votre image. Portrait artistique, professionnel ou créatif : révélez votre personnalité avec élégance et précision.',
@@ -39,6 +42,7 @@ export const heroData: HeroCategory[] = [
 
   {
     id: 'macro',
+    tagline: "L'invisible révélé",
     title: 'Photos Macro',
     description:
       'Explorer l’invisible, révéler l’inattendu. Chaque texture, chaque détail devient une œuvre. Une immersion fascinante dans un monde que l’on ne prend jamais le temps de regarder.',
