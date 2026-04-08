@@ -1,14 +1,35 @@
 <template>
   <div class="slide">
     <div class="content">
+      <!-- TEXTE -->
       <div class="text">
         <span class="eyebrow">{{ category.tagline }}</span>
+
         <h1>{{ category.title }}</h1>
+
+        <!-- PRIX -->
+        <span v-if="category.startingPrice" class="price">
+          {{ category.startingPrice }}
+        </span>
+
         <p v-if="category.description">
           {{ category.description }}
         </p>
+
+        <!-- SERVICES -->
+        <div v-if="category.subServices" class="services">
+          <span v-for="s in category.subServices" :key="s">
+            {{ s }}
+          </span>
+        </div>
+
+        <!-- CTA -->
+        <a v-if="category.cta" :href="category.cta.href" class="cta">
+          {{ category.cta.label }}
+        </a>
       </div>
 
+      <!-- IMAGES -->
       <div class="images">
         <img
           v-for="(img, index) in category.images.slice(0, 3)"
@@ -28,6 +49,12 @@ defineProps<{
     tagline: string
     title: string
     description?: string
+    startingPrice?: string
+    subServices?: string[]
+    cta?: {
+      label: string
+      href: string
+    }
     images: { src: string; alt: string }[]
   }
 }>()
@@ -50,23 +77,68 @@ defineProps<{
 
 /* TEXT */
 .text {
-  max-width: 500px;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
 }
 
 .eyebrow {
   color: var(--color-primary);
   font-weight: 600;
-  margin-bottom: $space-sm;
+  font-size: 0.85rem;
 }
 
 h1 {
   font-size: 3.5rem;
-  margin-bottom: $space-sm;
   color: var(--text-primary);
 }
 
+/* PRIX */
+.price {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* DESCRIPTION */
 p {
   color: var(--text-secondary);
+  margin-top: $space-xs;
+}
+
+/* SERVICES */
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-xs;
+  margin-top: $space-xs;
+
+  span {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: $radius-sm;
+
+    background: var(--surface-2);
+    color: var(--text-muted);
+  }
+}
+
+/* CTA */
+.cta {
+  margin-top: $space-sm;
+  width: fit-content;
+
+  font-size: 0.9rem;
+  color: var(--text-primary);
+
+  border-bottom: 1px solid var(--border-default);
+
+  transition: all $transition-fast;
+
+  &:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
 }
 
 /* IMAGES */

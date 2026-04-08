@@ -1,7 +1,9 @@
 <template>
   <header class="app-header">
     <div class="container header-content">
-      <div class="logo">Pari'Clic</div>
+      <div class="logo">
+        <RouterLink to="/"> Pari'Clic </RouterLink>
+      </div>
 
       <nav class="nav">
         <ThemeSwitch />

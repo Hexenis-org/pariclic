@@ -6,13 +6,32 @@
       </SlideFadeTransition>
     </div>
 
-    <div class="controls">
-      <div class="controls-wrapper" :key="progressKey" :style="{ '--duration': duration + 'ms' }">
-        <button @click="prev">‹</button>
-        <button @click="toggleAuto">
-          {{ isAuto ? 'Pause' : 'Play' }}
-        </button>
-        <button @click="next">›</button>
+    <!-- 🔥 Footer UI -->
+    <div class="hero-footer">
+      <!-- INDICATORS -->
+      <div class="indicators">
+        <span
+          v-for="(_, index) in heroData"
+          :key="index"
+          :class="{ active: index === categoryIndex }"
+          @click="goTo(index)"
+        />
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="controls">
+        <div
+          class="controls-wrapper"
+          :class="{ paused: !isAuto || isHovered }"
+          :key="progressKey"
+          :style="{ '--duration': duration + 'ms' }"
+        >
+          <button @click="prev">‹</button>
+          <button @click="toggleAuto">
+            {{ isAuto ? 'Pause' : 'Play' }}
+          </button>
+          <button @click="next">›</button>
+        </div>
       </div>
     </div>
   </section>
@@ -25,10 +44,10 @@ import HeroSlide from './HeroSlide.vue'
 import SlideFadeTransition from '@/components/transitions/SlideAndFadeTransition.vue'
 
 const categoryIndex = ref(0)
-
 const direction = ref<'next' | 'prev'>('next')
 
 const isAuto = ref(true)
+const isHovered = ref(false)
 
 const duration = 4000
 const progressKey = ref(0)
@@ -46,6 +65,13 @@ const next = () => {
 const prev = () => {
   direction.value = 'prev'
   categoryIndex.value = (categoryIndex.value - 1 + heroData.length) % heroData.length
+
+  if (isAuto.value) startAuto()
+}
+
+const goTo = (index: number) => {
+  direction.value = index > categoryIndex.value ? 'next' : 'prev'
+  categoryIndex.value = index
 
   if (isAuto.value) startAuto()
 }
@@ -72,8 +98,15 @@ const toggleAuto = () => {
   isAuto.value ? startAuto() : stopAuto()
 }
 
-const pause = () => stopAuto()
-const resume = () => isAuto.value && startAuto()
+const pause = () => {
+  isHovered.value = true
+  stopAuto()
+}
+
+const resume = () => {
+  isHovered.value = false
+  if (isAuto.value) startAuto()
+}
 
 onMounted(() => {
   if (isAuto.value) startAuto()
@@ -99,41 +132,53 @@ onUnmounted(() => stopAuto())
   width: 100%;
 }
 
-/* 🔥 Progress bar ultra discrète */
-.progress {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-
-  background: var(--border-subtle);
-  opacity: 0.6;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0%;
-
-  background: var(--color-primary);
-  opacity: 0.5;
-
-  animation: progress linear forwards;
-}
-
-@keyframes progress {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-/* Controls */
-.controls {
+/* 🔥 FOOTER UI */
+.hero-footer {
   position: absolute;
   bottom: 30px;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* INDICATORS */
+.indicators {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 6px;
+}
+
+.indicators span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+  background: var(--text-muted);
+  opacity: 0.4;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.indicators span.active {
+  background: var(--color-primary);
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+.indicators span:hover {
+  opacity: 0.8;
+}
+
+/* CONTROLS */
+.controls {
+  position: absolute;
   right: 30px;
 }
 
@@ -150,11 +195,10 @@ onUnmounted(() => stopAuto())
   backdrop-filter: blur(10px);
 
   border: 1px solid var(--border-subtle);
-
   overflow: hidden;
 }
 
-/* 🔥 ligne animée discrète */
+/* progress bar */
 .controls-wrapper::after {
   content: '';
   position: absolute;
@@ -172,7 +216,11 @@ onUnmounted(() => stopAuto())
   pointer-events: none;
 }
 
-/* animation */
+/* 🔥 pause animation sync */
+.controls-wrapper.paused::after {
+  animation-play-state: paused;
+}
+
 @keyframes progress {
   from {
     width: 0%;
@@ -182,7 +230,7 @@ onUnmounted(() => stopAuto())
   }
 }
 
-/* boutons */
+/* buttons */
 .controls-wrapper button {
   background: transparent;
   border: none;
@@ -190,20 +238,6 @@ onUnmounted(() => stopAuto())
 
   cursor: pointer;
   opacity: 0.7;
-
-  transition: all 0.2s ease;
-
-  &:hover {
-    opacity: 1;
-    color: var(--color-primary);
-  }
-}
-.controls button {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  opacity: 0.6;
 
   transition: all 0.2s ease;
 
