@@ -6,7 +6,7 @@
       </SlideFadeTransition>
     </div>
 
-    <!-- 🔥 Footer UI -->
+    <!-- Footer UI -->
     <div class="hero-footer">
       <!-- INDICATORS -->
       <div class="indicators">
@@ -132,7 +132,7 @@ onUnmounted(() => stopAuto())
   width: 100%;
 }
 
-/* 🔥 FOOTER UI */
+/* FOOTER UI */
 .hero-footer {
   position: absolute;
   bottom: 30px;
@@ -216,7 +216,7 @@ onUnmounted(() => stopAuto())
   pointer-events: none;
 }
 
-/* 🔥 pause animation sync */
+/* pause animation sync */
 .controls-wrapper.paused::after {
   animation-play-state: paused;
 }

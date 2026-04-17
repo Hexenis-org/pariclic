@@ -1,3 +1,9 @@
+export type PackageType = {
+  name: string
+  price: string
+  details: string[]
+}
+
 export type ServiceData = {
   id: string
   title: string
@@ -10,11 +16,7 @@ export type ServiceData = {
 
   includes: string[]
 
-  packages?: {
-    name: string
-    price: string
-    details: string[]
-  }[]
+  packages?: PackageType[]
 
   gallery: string[]
 }
